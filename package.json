@@ -1,0 +1,26 @@
+{
+  "name": "tiktok-downloader",
+  "version": "1.0.0",
+  "description": "Stylish 3D TikTok/FB/YT/Instagram No Watermark Downloader",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev",
+    "build": "echo 'No build step needed for now'"
+  },
+  "dependencies": {
+    "yt-dlp-exec": "^1.0.0"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "TikTok",
+    "Downloader",
+    "No Watermark",
+    "Vercel",
+    "3D",
+    "Stylish"
+  ],
+  "author": "YourName",
+  "license": "MIT"
+}
