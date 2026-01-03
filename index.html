@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok NO Watermak Video Downloader</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Poppins', sans-serif;
+  }
+  .card {
+    perspective: 1000px;
+  }
+  .card-inner {
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .card:hover .card-inner {
+    transform: rotateY(15deg) rotateX(10deg);
+  }
+  .card-front, .card-back {
+    backface-visibility: hidden;
+  }
+  .card-front {
+    background: #ffffff20;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
+</style>
+</head>
+<body class="flex justify-center items-center min-h-screen">
+
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front max-w-md mx-auto text-center">
+      <h1 class="text-4xl font-bold text-white mb-4">TIK TOK Video Downloader</h1>
+      <p class="text-white/70 mb-6">Download TikTok videos <br>without watermark.</p>
+      <input type="text" id="url" placeholder="Paste video URL" class="w-full p-3 rounded-xl mb-4">
+      <button onclick="download()" class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition transform">Download</button>
+      <div id="result" class="mt-6 text-white font-semibold"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function download() {
+    const url = document.getElementById('url').value;
+    const result = document.getElementById('result');
+    result.innerHTML = "Processing...";
+    try {
+        const res = await fetch(`/api/download?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+        if(data.download) {
+            result.innerHTML = `<a href="${data.download}" target="_blank" class="text-green-400 underline">Click to Download</a>`;
+        } else {
+            result.innerHTML = "Failed to fetch video!";
+        }
+    } catch(e) {
+        result.innerHTML = "Error: " + e.message;
+    }
+}
+</script>
+
+</body>
+</html>
